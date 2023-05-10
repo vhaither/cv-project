@@ -1,6 +1,10 @@
 import React from "react";
 
-function WorkExperience() {
+const WorkExperience = (props) => {
+  const handleCancelClick = () => {
+    props.onCancel();
+  };
+
   return (
     <div>
       <div className="forms">
@@ -11,9 +15,9 @@ function WorkExperience() {
         <input type="text" placeholder="Description"></input>
       </div>
       <button>Save</button>
-      <button>Cancel</button>
+      <button onClick={handleCancelClick}>Cancel</button>
     </div>
   );
-}
+};
 
 export default WorkExperience;

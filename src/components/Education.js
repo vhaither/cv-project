@@ -1,6 +1,10 @@
 import React from "react";
 
-function Education() {
+const Education = (props) => {
+  const handleCancelClick = () => {
+    props.onCancel();
+  };
+
   return (
     <div>
       <div className="forms">
@@ -10,9 +14,9 @@ function Education() {
         <input type="text" placeholder="To"></input>
       </div>
       <button>Save</button>
-      <button>Cancel</button>
+      <button onClick={handleCancelClick}>Cancel</button>
     </div>
   );
-}
+};
 
 export default Education;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function GeneralInfo() {
+const GeneralInfo = () => {
   return (
     <div>
       <div className="forms">
@@ -11,6 +11,6 @@ function GeneralInfo() {
       </div>
     </div>
   );
-}
+};
 
 export default GeneralInfo;
