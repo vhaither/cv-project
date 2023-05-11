@@ -1,16 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import "./WorkExperience.css";
 
 const WorkExperience = (props) => {
-  //   const [workExperienceInfo, setWorkExperienceInfo] = useState({
-  //     jobTitle: "",
-  //     company: "",
-  //     from: "",
-  //     to: "",
-  //     description: "",
-  //   });
-
-  const { onCancel, info, setInfo } = props;
+  const { onCancel, info, setInfo, list, setList } = props;
 
   const handleCancelClick = () => {
     onCancel();
@@ -23,9 +15,13 @@ const WorkExperience = (props) => {
     });
   };
 
+  const handleSaveClick = () => {
+    setList(list.concat(info));
+  };
+
   return (
     <div>
-      <div className="forms">
+      <div className="workExperienceForm">
         <input
           data-formid="jobTitle"
           type="text"
@@ -54,21 +50,37 @@ const WorkExperience = (props) => {
           placeholder="To"
           value={info.to}
         ></input>
-        <input
+        <textarea
           data-formid="description"
           type="text"
           onChange={handleFormChange}
           placeholder="Description"
           value={info.description}
-        ></input>
+          rows="5"
+          col="30"
+        ></textarea>
       </div>
-      <button>Save</button>
-      <button onClick={handleCancelClick}>Cancel</button>
-      <p>{info.jobTitle}</p>
-      <p>{info.company}</p>
-      <p>{info.from}</p>
-      <p>{info.to}</p>
-      <p>{info.description}</p>
+      <div className="centerButtons">
+        <button onClick={handleSaveClick}>Save</button>
+        <button onClick={handleCancelClick}>Cancel</button>
+      </div>
+      {list.map((info, i) => {
+        return (
+          <div className="savedExperience">
+            <div className="savedExperienceText">
+              <h4>{info.jobTitle}</h4>
+              <p>{info.company}</p>
+              <p>
+                {info.from} - {info.to}
+              </p>
+              <p>{info.description}</p>
+            </div>
+            <div className="savedExperienceDeleteButton">
+              <button>Delete</button>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

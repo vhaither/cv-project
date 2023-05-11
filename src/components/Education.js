@@ -1,7 +1,8 @@
 import React from "react";
+import "./Education.css";
 
 const Education = (props) => {
-  const { onCancel, info, setInfo } = props;
+  const { onCancel, info, setInfo, list, setList } = props;
 
   const handleCancelClick = () => {
     onCancel();
@@ -14,9 +15,13 @@ const Education = (props) => {
     });
   };
 
+  const handleSaveClick = () => {
+    setList(list.concat(info));
+  };
+
   return (
     <div>
-      <div className="forms">
+      <div className="educationForm">
         <input
           data-formid="degree"
           type="text"
@@ -46,12 +51,26 @@ const Education = (props) => {
           value={info.to}
         ></input>
       </div>
-      <button>Save</button>
-      <button onClick={handleCancelClick}>Cancel</button>
-      <p>{info.degree}</p>
-      <p>{info.school}</p>
-      <p>{info.from}</p>
-      <p>{info.to}</p>
+      <div className="centerButtons">
+        <button onClick={handleSaveClick}>Save</button>
+        <button onClick={handleCancelClick}>Cancel</button>
+      </div>
+      {list.map((info, i) => {
+        return (
+          <div className="savedEducation">
+            <div className="savedEducationText">
+              <h4>{info.degree}</h4>
+              <p>{info.school}</p>
+              <p>
+                {info.from} - {info.to}
+              </p>
+            </div>
+            <div className="savedEducationDeleteButton">
+              <button>Delete</button>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

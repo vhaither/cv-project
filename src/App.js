@@ -3,6 +3,7 @@ import { useState } from "react";
 import GeneralInfo from "./components/GeneralInfo";
 import WorkExperience from "./components/WorkExperience";
 import Education from "./components/Education";
+import "./App.css";
 
 const App = () => {
   const [generalInfo, setGeneralInfo] = useState({
@@ -20,7 +21,7 @@ const App = () => {
     description: "",
   });
 
-  // const [workExperienceList, setWorkExperienceList] = useState([]);
+  const [workExperienceList, setWorkExperienceList] = useState([]);
 
   const [educationInfo, setEducationInfo] = useState({
     degree: "",
@@ -29,7 +30,7 @@ const App = () => {
     to: "",
   });
 
-  // const [educationList, setEducationList] = useState([]);
+  const [educationList, setEducationList] = useState([]);
   const [showWorkExperienceForm, setShowWorkExperienceForm] = useState(false);
 
   const [showAddWorkExperienceButton, setShowAddWorkExperienceButton] =
@@ -61,30 +62,49 @@ const App = () => {
 
   return (
     <div className="App">
-      <h3>General Information</h3>
-      <GeneralInfo info={generalInfo} setInfo={setGeneralInfo} />
-      <h3>Work Experience</h3>
-      {showWorkExperienceForm ? (
-        <WorkExperience
-          onCancel={removeWorkExperienceForm}
-          info={workExperienceInfo}
-          setInfo={setWorkExperienceInfo}
-        />
-      ) : null}
-      {showAddWorkExperienceButton ? (
-        <button onClick={addWorkExperience}>Add Work Experience</button>
-      ) : null}
-      <h3>Education</h3>
-      {showEducationForm ? (
-        <Education
-          onCancel={removeEducationForm}
-          info={educationInfo}
-          setInfo={setEducationInfo}
-        />
-      ) : null}
-      {showAddEducationButton ? (
-        <button onClick={addEducation}>Add Education</button>
-      ) : null}
+      <div className="forms">
+        <div className="generalInfo">
+          <h3>General Information</h3>
+          <GeneralInfo info={generalInfo} setInfo={setGeneralInfo} />
+        </div>
+        <div className="workExp">
+          <h3>Work Experience</h3>
+          {showWorkExperienceForm ? (
+            <WorkExperience
+              onCancel={removeWorkExperienceForm}
+              info={workExperienceInfo}
+              setInfo={setWorkExperienceInfo}
+              list={workExperienceList}
+              setList={setWorkExperienceList}
+            />
+          ) : null}
+          {showAddWorkExperienceButton ? (
+            <div className="centerButton">
+              <button onClick={addWorkExperience}>Add Work Experience</button>
+            </div>
+          ) : null}
+        </div>
+        <div className="educationExp">
+          <h3>Education</h3>
+          {showEducationForm ? (
+            <Education
+              onCancel={removeEducationForm}
+              info={educationInfo}
+              setInfo={setEducationInfo}
+              list={educationList}
+              setList={setEducationList}
+            />
+          ) : null}
+          {showAddEducationButton ? (
+            <div className="centerButton">
+              <button onClick={addEducation}>Add Education</button>
+            </div>
+          ) : null}
+        </div>
+      </div>
+      <div className="previewCV">
+        <p>Testeeeeeeeeee</p>
+      </div>
     </div>
   );
 };

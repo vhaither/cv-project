@@ -1,4 +1,5 @@
 import React from "react";
+import "./GeneralInfo.css";
 
 const GeneralInfo = (props) => {
   const { info, setInfo } = props;
@@ -11,7 +12,7 @@ const GeneralInfo = (props) => {
   };
   return (
     <div>
-      <div className="forms">
+      <div className="generalInfoForms">
         <input
           data-formid="name"
           type="text"

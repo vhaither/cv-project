@@ -1,0 +1,16 @@
+div.educationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+div.educationForm input {
+  margin: 0 8px;
+}
+
+div.centerButtons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}

@@ -1,0 +1,17 @@
+div.workExperienceForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+div.workExperienceForm input,
+div.workExperienceForm textarea {
+  margin: 0 8px;
+}
+
+div.centerButtons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
