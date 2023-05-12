@@ -2,10 +2,10 @@ import React from "react";
 import "./WorkExperience.css";
 
 const WorkExperience = (props) => {
-  const { onCancel, info, setInfo, list, setList } = props;
+  const { removeForm, info, setInfo, list, setList } = props;
 
   const handleCancelClick = () => {
-    onCancel();
+    removeForm();
   };
 
   const handleFormChange = (e) => {
@@ -17,13 +17,7 @@ const WorkExperience = (props) => {
 
   const handleSaveClick = () => {
     setList(list.concat(info));
-  };
-
-  const handleDeleteClick = (x) => {
-    const newList = list.filter((info, i) => {
-      return i !== x;
-    });
-    setList(newList);
+    removeForm();
   };
 
   return (
@@ -71,23 +65,6 @@ const WorkExperience = (props) => {
         <button onClick={handleSaveClick}>Save</button>
         <button onClick={handleCancelClick}>Cancel</button>
       </div>
-      {list.map((info, i) => {
-        return (
-          <div key={`experience_${i}`} className="savedExperience">
-            <div className="savedExperienceText">
-              <h4>{info.jobTitle}</h4>
-              <p>{info.company}</p>
-              <p>
-                {info.from} - {info.to}
-              </p>
-              <p>{info.description}</p>
-            </div>
-            <div className="savedExperienceDeleteButton">
-              <button onClick={() => handleDeleteClick(i)}>Delete</button>
-            </div>
-          </div>
-        );
-      })}
     </div>
   );
 };

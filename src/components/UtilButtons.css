@@ -1,0 +1,38 @@
+div.utilButtons {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  align-items: center;
+}
+
+div.utilButtons button {
+  font-size: larger;
+  padding: 16px;
+}
+
+button.greenButton {
+  background-color: rgb(7, 107, 7);
+}
+
+button.blueButton {
+  background-color: rgb(22, 103, 189);
+}
+
+@media (min-width: 768px) {
+  button.hideForDesktop {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  button.hideForMobile {
+    display: none;
+  }
+}
+
+@media (max-width: 414px) {
+  div.utilButtons button {
+    font-size: large;
+    padding: 8px;
+  }
+}

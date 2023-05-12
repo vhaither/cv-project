@@ -2,6 +2,7 @@ div.workExperienceForm {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 32px;
 }
 
 div.workExperienceForm input,

@@ -2,10 +2,10 @@ import React from "react";
 import "./Education.css";
 
 const Education = (props) => {
-  const { onCancel, info, setInfo, list, setList } = props;
+  const { removeForm, info, setInfo, list, setList } = props;
 
   const handleCancelClick = () => {
-    onCancel();
+    removeForm();
   };
 
   const handleFormChange = (e) => {
@@ -17,13 +17,7 @@ const Education = (props) => {
 
   const handleSaveClick = () => {
     setList(list.concat(info));
-  };
-
-  const handleDeleteClick = (x) => {
-    const newList = list.filter((info, i) => {
-      return i !== x;
-    });
-    setList(newList);
+    removeForm();
   };
 
   return (
@@ -62,22 +56,6 @@ const Education = (props) => {
         <button onClick={handleSaveClick}>Save</button>
         <button onClick={handleCancelClick}>Cancel</button>
       </div>
-      {list.map((info, i) => {
-        return (
-          <div key={`education${i}`} className="savedEducation">
-            <div className="savedEducationText">
-              <h4>{info.degree}</h4>
-              <p>{info.school}</p>
-              <p>
-                {info.from} - {info.to}
-              </p>
-            </div>
-            <div className="savedEducationDeleteButton">
-              <button onClick={() => handleDeleteClick(i)}>Delete</button>
-            </div>
-          </div>
-        );
-      })}
     </div>
   );
 };

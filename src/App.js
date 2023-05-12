@@ -4,6 +4,8 @@ import GeneralInfo from "./components/GeneralInfo";
 import WorkExperience from "./components/WorkExperience";
 import Education from "./components/Education";
 import "./App.css";
+import UtilButtons from "./components/UtilButtons";
+import PreviewCV from "./components/PreviewCV";
 
 const App = () => {
   const [generalInfo, setGeneralInfo] = useState({
@@ -31,6 +33,7 @@ const App = () => {
   });
 
   const [educationList, setEducationList] = useState([]);
+
   const [showWorkExperienceForm, setShowWorkExperienceForm] = useState(false);
 
   const [showAddWorkExperienceButton, setShowAddWorkExperienceButton] =
@@ -41,6 +44,13 @@ const App = () => {
   const [showAddEducationButton, setShowAddEducationButton] = useState(true);
 
   const addWorkExperience = () => {
+    setWorkExperienceInfo({
+      jobTitle: "",
+      company: "",
+      from: "",
+      to: "",
+      description: "",
+    });
     setShowWorkExperienceForm(true);
     setShowAddWorkExperienceButton(false);
   };
@@ -51,6 +61,12 @@ const App = () => {
   };
 
   const addEducation = () => {
+    setEducationInfo({
+      degree: "",
+      school: "",
+      from: "",
+      to: "",
+    });
     setShowEducationForm(true);
     setShowAddEducationButton(false);
   };
@@ -58,6 +74,20 @@ const App = () => {
   const removeEducationForm = () => {
     setShowEducationForm(false);
     setShowAddEducationButton(true);
+  };
+
+  const handleDeleteExperienceClick = (indexToBeRemoved) => {
+    const newList = workExperienceList.filter((info, i) => {
+      return i !== indexToBeRemoved;
+    });
+    setWorkExperienceList(newList);
+  };
+
+  const handleEducationDeleteClick = (indexToBeRemoved) => {
+    const newList = educationList.filter((info, i) => {
+      return i !== indexToBeRemoved;
+    });
+    setEducationList(newList);
   };
 
   return (
@@ -69,9 +99,28 @@ const App = () => {
         </div>
         <div className="workExp">
           <h3>Work Experience</h3>
+          {workExperienceList.map((info, i) => {
+            return (
+              <div key={`experience_${i}`} className="savedExperience">
+                <div className="savedExperienceText">
+                  <h4>{info.jobTitle}</h4>
+                  <p>{info.company}</p>
+                  <p>
+                    {info.from} - {info.to}
+                  </p>
+                  <p>{info.description}</p>
+                </div>
+                <div className="savedExperienceDeleteButton">
+                  <button onClick={() => handleDeleteExperienceClick(i)}>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            );
+          })}
           {showWorkExperienceForm ? (
             <WorkExperience
-              onCancel={removeWorkExperienceForm}
+              removeForm={removeWorkExperienceForm}
               info={workExperienceInfo}
               setInfo={setWorkExperienceInfo}
               list={workExperienceList}
@@ -86,9 +135,27 @@ const App = () => {
         </div>
         <div className="educationExp">
           <h3>Education</h3>
+          {educationList.map((info, i) => {
+            return (
+              <div key={`education${i}`} className="savedEducation">
+                <div className="savedEducationText">
+                  <h4>{info.degree}</h4>
+                  <p>{info.school}</p>
+                  <p>
+                    {info.from} - {info.to}
+                  </p>
+                </div>
+                <div className="savedEducationDeleteButton">
+                  <button onClick={() => handleEducationDeleteClick(i)}>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            );
+          })}
           {showEducationForm ? (
             <Education
-              onCancel={removeEducationForm}
+              removeForm={removeEducationForm}
               info={educationInfo}
               setInfo={setEducationInfo}
               list={educationList}
@@ -101,10 +168,12 @@ const App = () => {
             </div>
           ) : null}
         </div>
+        <div className="cvOptions">
+          <h3>CV Options</h3>
+          <UtilButtons />
+        </div>
       </div>
-      <div className="previewCV">
-        <p>Testeeeeeeeeee</p>
-      </div>
+      <PreviewCV />
     </div>
   );
 };
