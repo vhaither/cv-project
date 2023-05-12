@@ -19,6 +19,13 @@ const WorkExperience = (props) => {
     setList(list.concat(info));
   };
 
+  const handleDeleteClick = (x) => {
+    const newList = list.filter((info, i) => {
+      return i !== x;
+    });
+    setList(newList);
+  };
+
   return (
     <div>
       <div className="workExperienceForm">
@@ -66,7 +73,7 @@ const WorkExperience = (props) => {
       </div>
       {list.map((info, i) => {
         return (
-          <div className="savedExperience">
+          <div key={`experience_${i}`} className="savedExperience">
             <div className="savedExperienceText">
               <h4>{info.jobTitle}</h4>
               <p>{info.company}</p>
@@ -76,7 +83,7 @@ const WorkExperience = (props) => {
               <p>{info.description}</p>
             </div>
             <div className="savedExperienceDeleteButton">
-              <button>Delete</button>
+              <button onClick={() => handleDeleteClick(i)}>Delete</button>
             </div>
           </div>
         );

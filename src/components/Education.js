@@ -19,6 +19,13 @@ const Education = (props) => {
     setList(list.concat(info));
   };
 
+  const handleDeleteClick = (x) => {
+    const newList = list.filter((info, i) => {
+      return i !== x;
+    });
+    setList(newList);
+  };
+
   return (
     <div>
       <div className="educationForm">
@@ -57,7 +64,7 @@ const Education = (props) => {
       </div>
       {list.map((info, i) => {
         return (
-          <div className="savedEducation">
+          <div key={`education${i}`} className="savedEducation">
             <div className="savedEducationText">
               <h4>{info.degree}</h4>
               <p>{info.school}</p>
@@ -66,7 +73,7 @@ const Education = (props) => {
               </p>
             </div>
             <div className="savedEducationDeleteButton">
-              <button>Delete</button>
+              <button onClick={() => handleDeleteClick(i)}>Delete</button>
             </div>
           </div>
         );
