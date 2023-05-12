@@ -6,6 +6,7 @@ import Education from "./components/Education";
 import "./App.css";
 import UtilButtons from "./components/UtilButtons";
 import PreviewCV from "./components/PreviewCV";
+import Skills from "./components/Skills";
 
 const App = () => {
   const [generalInfo, setGeneralInfo] = useState({
@@ -34,6 +35,10 @@ const App = () => {
 
   const [educationList, setEducationList] = useState([]);
 
+  const [skill, setSkill] = useState("");
+
+  const [skillList, setSkillList] = useState([]);
+
   const [showWorkExperienceForm, setShowWorkExperienceForm] = useState(false);
 
   const [showAddWorkExperienceButton, setShowAddWorkExperienceButton] =
@@ -42,6 +47,10 @@ const App = () => {
   const [showEducationForm, setShowEducationForm] = useState(false);
 
   const [showAddEducationButton, setShowAddEducationButton] = useState(true);
+
+  const [showSkillForm, setShowSkillForm] = useState(false);
+
+  const [showAddSkillButton, setShowAddSkillButton] = useState(true);
 
   const addWorkExperience = () => {
     setWorkExperienceInfo({
@@ -76,6 +85,17 @@ const App = () => {
     setShowAddEducationButton(true);
   };
 
+  const addSkill = () => {
+    setSkill("");
+    setShowSkillForm(true);
+    setShowAddSkillButton(false);
+  };
+
+  const removeSkillForm = () => {
+    setShowSkillForm(false);
+    setShowAddSkillButton(true);
+  };
+
   const handleDeleteExperienceClick = (indexToBeRemoved) => {
     const newList = workExperienceList.filter((info, i) => {
       return i !== indexToBeRemoved;
@@ -88,6 +108,13 @@ const App = () => {
       return i !== indexToBeRemoved;
     });
     setEducationList(newList);
+  };
+
+  const handleSkillDeleteClick = (indexToBeRemoved) => {
+    const newList = skillList.filter((info, i) => {
+      return i !== indexToBeRemoved;
+    });
+    setSkillList(newList);
   };
 
   return (
@@ -168,12 +195,44 @@ const App = () => {
             </div>
           ) : null}
         </div>
+        <div className="skills">
+          <h3>Skills</h3>
+          {skillList.map((skill, i) => {
+            return (
+              <div key={`skill_${i}`} className="addedSkill">
+                <p>{skill}</p>
+                <button onClick={() => handleSkillDeleteClick(i)}>
+                  Delete
+                </button>
+              </div>
+            );
+          })}
+          {showSkillForm ? (
+            <Skills
+              removeForm={removeSkillForm}
+              info={skill}
+              setInfo={setSkill}
+              list={skillList}
+              setList={setSkillList}
+            />
+          ) : null}
+          {showAddSkillButton ? (
+            <div className="centerButton">
+              <button onClick={addSkill}>Add Skill</button>
+            </div>
+          ) : null}
+        </div>
         <div className="cvOptions">
           <h3>CV Options</h3>
           <UtilButtons />
         </div>
       </div>
-      <PreviewCV />
+      <PreviewCV
+        generalInfoCV={generalInfo}
+        workExperienceCV={workExperienceList}
+        educationCV={educationList}
+        skillsCV={skillList}
+      />
     </div>
   );
 };

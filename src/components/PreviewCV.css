@@ -1,6 +1,6 @@
 div.previewCV {
-  width: 50%;
   height: 100vh;
+  aspect-ratio: 0.7071;
   background-color: white;
   border-radius: 16px;
 }

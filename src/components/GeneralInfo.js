@@ -42,10 +42,6 @@ const GeneralInfo = (props) => {
           value={info.linkedin}
         ></input>
       </div>
-      <p>{info.name}</p>
-      <p>{info.email}</p>
-      <p>{info.phone}</p>
-      <p>{info.linkedin}</p>
     </div>
   );
 };

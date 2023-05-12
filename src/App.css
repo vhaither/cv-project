@@ -35,7 +35,7 @@ div.centerButton {
   align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1226px) {
   div.previewCV {
     display: none;
   }
