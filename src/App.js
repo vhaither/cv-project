@@ -239,6 +239,7 @@ const App = () => {
         workExperienceCV={workExperienceList}
         educationCV={educationList}
         skillsCV={skillList}
+        photoCV={selectedImage}
       />
     </div>
   );

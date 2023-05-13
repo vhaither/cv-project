@@ -31,10 +31,13 @@ const UserPhoto = (props) => {
         onChange={handleImageUpload}
         id="img"
       />
-      <label htmlFor="img">Upload Photo</label>
-      {displayDeletePhotoButton ? (
-        <button onClick={deleteImage}>Delete Photo</button>
-      ) : null}
+      <div className="photoButtons">
+        {displayDeletePhotoButton ? (
+          <button onClick={deleteImage}>Delete Photo</button>
+        ) : (
+          <label htmlFor="img">Upload Photo</label>
+        )}
+      </div>
     </div>
   );
 };
