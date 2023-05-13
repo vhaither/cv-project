@@ -1,0 +1,13 @@
+div.uploadPhoto {
+  display: flex;
+  justify-content: center;
+}
+input[type="file"] {
+  display: none;
+}
+label[for="img"] {
+  background-color: grey;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 0 0 16px 0;
+}

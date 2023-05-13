@@ -7,6 +7,7 @@ import "./App.css";
 import UtilButtons from "./components/UtilButtons";
 import PreviewCV from "./components/PreviewCV";
 import Skills from "./components/Skills";
+import UserPhoto from "./components/UserPhoto";
 
 const App = () => {
   const [generalInfo, setGeneralInfo] = useState({
@@ -117,11 +118,17 @@ const App = () => {
     setSkillList(newList);
   };
 
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <div className="App">
       <div className="forms">
         <div className="generalInfo">
           <h3>General Information</h3>
+          <UserPhoto
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+          />
           <GeneralInfo info={generalInfo} setInfo={setGeneralInfo} />
         </div>
         <div className="workExp">
