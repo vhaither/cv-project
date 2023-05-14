@@ -14,7 +14,6 @@ div.forms {
   flex-direction: column;
   gap: 16px;
   width: 50%;
-  min-width: fit-content;
   max-width: 500px;
 }
 
@@ -48,4 +47,11 @@ button {
 ::placeholder {
   color: white;
   opacity: 0.33;
+}
+
+h4,
+p,
+h1,
+li {
+  overflow-wrap: anywhere;
 }

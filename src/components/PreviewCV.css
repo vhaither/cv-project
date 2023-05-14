@@ -41,7 +41,7 @@ div.leftCV ul {
 }
 div.leftCV li {
   padding: 4px 0;
-  word-wrap: break-word;
+  text-align: left;
 }
 
 div.leftCV li span {
