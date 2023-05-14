@@ -12,6 +12,8 @@ const UtilButtons = (props) => {
     setWorkExperienceList,
     setGeneralInfo,
     setDisplayDeletePhotoButton,
+    setPreviewPDF,
+    changePreviewStyle,
   } = props;
 
   const autoFill = () => {
@@ -72,11 +74,18 @@ const UtilButtons = (props) => {
     console.log(userData);
   };
 
+  const hideForm = () => {
+    setPreviewPDF(false);
+    changePreviewStyle();
+  };
+
   return (
     <div className="utilButtons">
       <button onClick={autoFill}>Auto Fill Form</button>
-      <button className="blueButton hideForDesktop">Preview CV</button>
-      <button onClick={downloadPDF} className="greenButton">
+      <button onClick={hideForm} className="blueButton hideForDesktop">
+        Preview CV
+      </button>
+      <button onClick={downloadPDF} className="greenButton hideForMobile">
         Download PDF
       </button>
     </div>
