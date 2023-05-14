@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import GeneralInfo from "./components/GeneralInfo";
 import WorkExperience from "./components/WorkExperience";
 import Education from "./components/Education";
@@ -8,10 +8,13 @@ import UtilButtons from "./components/UtilButtons";
 import PreviewCV from "./components/PreviewCV";
 import Skills from "./components/Skills";
 import UserPhoto from "./components/UserPhoto";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const App = () => {
   const [generalInfo, setGeneralInfo] = useState({
     name: "",
+    address: "",
     email: "",
     phone: "",
     linkedin: "",
@@ -52,6 +55,9 @@ const App = () => {
   const [showSkillForm, setShowSkillForm] = useState(false);
 
   const [showAddSkillButton, setShowAddSkillButton] = useState(true);
+
+  const [displayDeletePhotoButton, setDisplayDeletePhotoButton] =
+    useState(false);
 
   const addWorkExperience = () => {
     setWorkExperienceInfo({
@@ -120,12 +126,34 @@ const App = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const previewCVRef = useRef(null);
+
+  const generatePDF = () => {
+    const input = previewCVRef.current;
+
+    html2canvas(input).then((canvas) => {
+      const pdf = new jsPDF();
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+
+      const imgData = canvas.toDataURL("image/png");
+      const imgWidth = pdfWidth;
+      const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save("component.pdf");
+    });
+  };
+
+  const [userData, setUserData] = useState(null);
+
   return (
     <div className="App">
       <div className="forms">
         <div className="generalInfo">
           <h3>General Information</h3>
           <UserPhoto
+            displayDeletePhotoButton={displayDeletePhotoButton}
+            setDisplayDeletePhotoButton={setDisplayDeletePhotoButton}
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
           />
@@ -204,16 +232,18 @@ const App = () => {
         </div>
         <div className="skills">
           <h3>Skills</h3>
-          {skillList.map((skill, i) => {
-            return (
-              <div key={`skill_${i}`} className="addedSkill">
-                <p>{skill}</p>
-                <button onClick={() => handleSkillDeleteClick(i)}>
-                  Delete
-                </button>
-              </div>
-            );
-          })}
+          <div className="allAddedSkills">
+            {skillList.map((skill, i) => {
+              return (
+                <div key={`skill_${i}`} className="addedSkill">
+                  <p>{skill}</p>
+                  <button onClick={() => handleSkillDeleteClick(i)}>
+                    Delete
+                  </button>
+                </div>
+              );
+            })}
+          </div>
           {showSkillForm ? (
             <Skills
               removeForm={removeSkillForm}
@@ -224,23 +254,36 @@ const App = () => {
             />
           ) : null}
           {showAddSkillButton ? (
-            <div className="centerButton">
+            <div className="centerButton addSkillButton">
               <button onClick={addSkill}>Add Skill</button>
             </div>
           ) : null}
         </div>
         <div className="cvOptions">
           <h3>CV Options</h3>
-          <UtilButtons />
+          <UtilButtons
+            userData={userData}
+            setUserData={setUserData}
+            downloadPDF={generatePDF}
+            setEducationList={setEducationList}
+            setWorkExperienceList={setWorkExperienceList}
+            setGeneralInfo={setGeneralInfo}
+            setSelectedImage={setSelectedImage}
+            setDisplayDeletePhotoButton={setDisplayDeletePhotoButton}
+            setSkillList={setSkillList}
+          />
         </div>
       </div>
-      <PreviewCV
-        generalInfoCV={generalInfo}
-        workExperienceCV={workExperienceList}
-        educationCV={educationList}
-        skillsCV={skillList}
-        photoCV={selectedImage}
-      />
+
+      <div className="forRefOnly" ref={previewCVRef}>
+        <PreviewCV
+          generalInfoCV={generalInfo}
+          workExperienceCV={workExperienceList}
+          educationCV={educationList}
+          skillsCV={skillList}
+          photoCV={selectedImage}
+        />
+      </div>
     </div>
   );
 };

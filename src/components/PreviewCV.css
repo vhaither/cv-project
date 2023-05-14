@@ -2,7 +2,6 @@ div.previewCV {
   height: 97vh;
   aspect-ratio: 0.7071;
   background-color: white;
-  border-radius: 16px;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -19,7 +18,6 @@ div.leftCV {
   padding: 8px;
   min-width: 148px;
   max-width: 175px;
-  border-radius: 16px 0 0 16px;
   display: flex;
   flex-direction: column;
 }
@@ -39,6 +37,12 @@ div.leftCV ul {
   padding: 0px 8px;
   list-style-type: none;
 }
+
+div.skillsCV ul {
+  margin-left: 16px;
+  list-style-type: circle;
+}
+
 div.leftCV li {
   padding: 4px 0;
   text-align: left;
@@ -72,10 +76,44 @@ div.bottonRightCV {
   width: 100%;
 }
 
+.workExperienceCV,
+.educationCV {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .workExperienceCV {
   border-bottom: 0.5px solid rgb(42, 42, 42);
+  border-radius: 0%;
 }
 
 div.previewCV h1 {
   text-align: center;
+}
+
+.workExperienceCV,
+.educationCV {
+  padding: 16px;
+}
+
+.bottonRightCV p,
+.bottonRightCV h4 {
+  margin: 0px;
+}
+
+.smallText {
+  font-size: small;
+}
+
+.smallerText {
+  font-size: smaller;
+}
+
+div.bottonRightCV h3 {
+  margin: 10px 0;
+}
+
+div.contactCV h3 {
+  margin-top: 16px;
 }

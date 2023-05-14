@@ -14,7 +14,7 @@ label[for="img"] {
 
 img[alt="uploadedImage"] {
   max-width: 132px;
-  aspect-ratio: 3/4;
+  max-height: 132px;
   margin-bottom: 16px;
   border-radius: 16px;
 }

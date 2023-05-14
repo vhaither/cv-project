@@ -55,3 +55,51 @@ h1,
 li {
   overflow-wrap: anywhere;
 }
+
+@media (max-width: 1226px) {
+  div.App {
+    justify-content: center;
+    gap: 0;
+  }
+
+  div.forms {
+    width: fit-content;
+  }
+}
+
+div.skills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.allAddedSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-evenly;
+  margin-bottom: 32px;
+}
+
+div.addedSkill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.addedSkill p {
+  margin: 4px 0px;
+}
+
+div.addedSkill button {
+  width: fit-content;
+}
+
+.forms .savedEducation,
+.forms .savedExperience {
+  padding: 4px 16px 16px 16px;
+}
+
+.forRefOnly {
+  background-color: black;
+}

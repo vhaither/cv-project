@@ -6,6 +6,7 @@ div.utilButtons {
 }
 
 div.utilButtons button {
+  flex: 1 1 auto;
   font-size: larger;
   padding: 16px;
 }

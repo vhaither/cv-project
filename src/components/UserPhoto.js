@@ -3,9 +3,13 @@ import { useState, useRef } from "react";
 import "./UserPhoto.css";
 
 const UserPhoto = (props) => {
-  const { selectedImage, setSelectedImage } = props;
-  const [displayDeletePhotoButton, setDisplayDeletePhotoButton] =
-    useState(false);
+  const {
+    displayDeletePhotoButton,
+    setDisplayDeletePhotoButton,
+    selectedImage,
+    setSelectedImage,
+  } = props;
+
   const inputFileRef = useRef(null);
 
   const handleImageUpload = () => {

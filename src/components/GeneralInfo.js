@@ -21,6 +21,13 @@ const GeneralInfo = (props) => {
           value={info.name}
         ></input>
         <input
+          data-formid="address"
+          type="text"
+          onChange={handleFormChange}
+          placeholder="Address"
+          value={info.address}
+        ></input>
+        <input
           data-formid="email"
           type="text"
           onChange={handleFormChange}

@@ -16,6 +16,10 @@ const PreviewCV = (props) => {
             <h3>Contact</h3>
             <ul>
               <li>
+                <span>Address: </span>
+                {generalInfoCV.address}
+              </li>
+              <li>
                 <span>Email: </span>
                 {generalInfoCV.email}
               </li>
@@ -53,10 +57,10 @@ const PreviewCV = (props) => {
                   <div className="savedExperienceText">
                     <h4>{info.jobTitle}</h4>
                     <p>{info.company}</p>
-                    <p>
+                    <p className="smallerText">
                       {info.from} - {info.to}
                     </p>
-                    <p>{info.description}</p>
+                    <p className="smallText">{info.description}</p>
                   </div>
                 </div>
               );
@@ -70,7 +74,7 @@ const PreviewCV = (props) => {
                   <div className="savedExperienceText">
                     <h4>{info.degree}</h4>
                     <p>{info.school}</p>
-                    <p>
+                    <p className="smallerText">
                       {info.from} - {info.to}
                     </p>
                   </div>
