@@ -2,7 +2,8 @@ import React from "react";
 import "./Education.css";
 
 const Education = (props) => {
-  const { removeForm, info, setInfo, list, setList } = props;
+  const { removeForm, info, setInfo, list, setList, sendDataLayerEventPush } =
+    props;
 
   const handleCancelClick = () => {
     removeForm();
@@ -18,6 +19,10 @@ const Education = (props) => {
   const handleSaveClick = () => {
     setList(list.concat(info));
     removeForm();
+    const dataLayerObject = {
+      event: "addEducation",
+    };
+    sendDataLayerEventPush(dataLayerObject);
   };
 
   return (

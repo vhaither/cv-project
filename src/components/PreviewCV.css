@@ -1,5 +1,5 @@
 div.previewCV {
-  height: 97vh;
+  height: 95vh;
   aspect-ratio: 0.7071;
   background-color: white;
   display: flex;
@@ -110,4 +110,15 @@ div.bottonRightCV h3 {
 
 div.contactCV h3 {
   margin-top: 16px;
+}
+
+.previewMobileButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.previewMobileButtons button {
+  font-size: larger;
+  padding: 16px;
+  width: fit-content;
 }

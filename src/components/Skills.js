@@ -1,7 +1,8 @@
 import React from "react";
 
 const Skills = (props) => {
-  const { removeForm, info, setInfo, list, setList } = props;
+  const { removeForm, info, setInfo, list, setList, sendDataLayerEventPush } =
+    props;
 
   const handleCancelClick = () => {
     removeForm();
@@ -14,6 +15,10 @@ const Skills = (props) => {
   const handleSaveClick = () => {
     setList(list.concat(info));
     removeForm();
+    const dataLayerObject = {
+      event: "addSkill",
+    };
+    sendDataLayerEventPush(dataLayerObject);
   };
 
   return (

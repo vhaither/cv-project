@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import GeneralInfo from "./components/GeneralInfo";
 import WorkExperience from "./components/WorkExperience";
 import Education from "./components/Education";
@@ -141,6 +141,10 @@ const App = () => {
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
       pdf.save("component.pdf");
+      const dataLayerObject = {
+        event: "downloadPDF",
+      };
+      sendDataLayerEventPush(dataLayerObject);
     });
   };
 
@@ -150,12 +154,35 @@ const App = () => {
   const [previewElementStyle, setPreviewElementStyle] = useState({});
 
   const changePreviewStyle = () => {
-    setPreviewElementStyle({ display: "block" });
+    setPreviewElementStyle({ display: "flex" });
   };
 
   const editForm = () => {
     setPreviewPDF(true);
     setPreviewElementStyle({ display: "none" });
+  };
+
+  useEffect(() => {
+    if (previewPDF === false) {
+      const div = previewCVRef.current;
+      const divWidth = div.offsetWidth;
+      const divHeight = div.offsetHeight;
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      const scaleX = (viewportWidth * 0.75) / divWidth;
+      const scaleY = (viewportHeight * 0.75) / divHeight;
+      const scale = Math.min(scaleX, scaleY);
+
+      console.log(scale);
+
+      div.style.transform = `scale(${scale})`;
+    }
+  }, [previewPDF]);
+
+  const sendDataLayerEventPush = (obj) => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(obj);
   };
 
   return (
@@ -165,12 +192,17 @@ const App = () => {
           <div className="generalInfo">
             <h3>General Information</h3>
             <UserPhoto
+              sendDataLayerEventPush={sendDataLayerEventPush}
               displayDeletePhotoButton={displayDeletePhotoButton}
               setDisplayDeletePhotoButton={setDisplayDeletePhotoButton}
               selectedImage={selectedImage}
               setSelectedImage={setSelectedImage}
             />
-            <GeneralInfo info={generalInfo} setInfo={setGeneralInfo} />
+            <GeneralInfo
+              sendDataLayerEventPush={sendDataLayerEventPush}
+              info={generalInfo}
+              setInfo={setGeneralInfo}
+            />
           </div>
           <div className="workExp">
             <h3>Work Experience</h3>
@@ -195,6 +227,7 @@ const App = () => {
             })}
             {showWorkExperienceForm ? (
               <WorkExperience
+                sendDataLayerEventPush={sendDataLayerEventPush}
                 removeForm={removeWorkExperienceForm}
                 info={workExperienceInfo}
                 setInfo={setWorkExperienceInfo}
@@ -230,6 +263,7 @@ const App = () => {
             })}
             {showEducationForm ? (
               <Education
+                sendDataLayerEventPush={sendDataLayerEventPush}
                 removeForm={removeEducationForm}
                 info={educationInfo}
                 setInfo={setEducationInfo}
@@ -259,6 +293,7 @@ const App = () => {
             </div>
             {showSkillForm ? (
               <Skills
+                sendDataLayerEventPush={sendDataLayerEventPush}
                 removeForm={removeSkillForm}
                 info={skill}
                 setInfo={setSkill}
@@ -275,6 +310,7 @@ const App = () => {
           <div className="cvOptions">
             <h3>CV Options</h3>
             <UtilButtons
+              sendDataLayerEventPush={sendDataLayerEventPush}
               changePreviewStyle={changePreviewStyle}
               userData={userData}
               setUserData={setUserData}
@@ -298,6 +334,7 @@ const App = () => {
         ref={previewCVRef}
       >
         <PreviewCV
+          sendDataLayerEventPush={sendDataLayerEventPush}
           generalInfoCV={generalInfo}
           workExperienceCV={workExperienceList}
           educationCV={educationList}

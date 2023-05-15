@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import "./UserPhoto.css";
 
 const UserPhoto = (props) => {
@@ -8,6 +8,7 @@ const UserPhoto = (props) => {
     setDisplayDeletePhotoButton,
     selectedImage,
     setSelectedImage,
+    sendDataLayerEventPush,
   } = props;
 
   const inputFileRef = useRef(null);
@@ -16,6 +17,10 @@ const UserPhoto = (props) => {
     const uploadedPhoto = inputFileRef.current.files[0];
     setSelectedImage(URL.createObjectURL(uploadedPhoto));
     setDisplayDeletePhotoButton(true);
+    const dataLayerObject = {
+      event: "uploadPhoto",
+    };
+    sendDataLayerEventPush(dataLayerObject);
   };
 
   const deleteImage = () => {

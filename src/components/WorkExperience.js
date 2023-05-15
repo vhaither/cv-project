@@ -2,7 +2,8 @@ import React from "react";
 import "./WorkExperience.css";
 
 const WorkExperience = (props) => {
-  const { removeForm, info, setInfo, list, setList } = props;
+  const { removeForm, info, setInfo, list, setList, sendDataLayerEventPush } =
+    props;
 
   const handleCancelClick = () => {
     removeForm();
@@ -18,6 +19,10 @@ const WorkExperience = (props) => {
   const handleSaveClick = () => {
     setList(list.concat(info));
     removeForm();
+    const dataLayerObject = {
+      event: "addWorkExperience",
+    };
+    sendDataLayerEventPush(dataLayerObject);
   };
 
   return (

@@ -102,6 +102,10 @@ div.addedSkill button {
 
 .previewMode {
   background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 @media (max-width: 1226px) {

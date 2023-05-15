@@ -2,7 +2,7 @@ import React from "react";
 import "./GeneralInfo.css";
 
 const GeneralInfo = (props) => {
-  const { info, setInfo } = props;
+  const { info, setInfo, sendDataLayerEventPush } = props;
 
   const handleFormChange = (e) => {
     setInfo({
