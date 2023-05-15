@@ -1,3 +1,9 @@
+A real time CV generator. Edit the inputs and once you are done, download the PDF to you machine. In a large enough screen you can view the changes to your CV in real time, while in smaller screens you will have to click the "Preview CV" button to view the changes. You can also click the "Auto Fill Form" to fill the forms for you, with information from the RandomAPI service.
+
+Problems yet to be fixed:
+- When you download a PDF with the forms filled with data from the API, the user generated photo is not printed on the PDF.
+- In smaller screens, the cv is not generated properly, its content is taking way too much space. I'll have to update the CSS of the CV preview DIV so that it uses fixed width and height values, instead of using porcentage based values and flexbox. To fit smaller screens with fixed height and width, i will add a transform style that decreases the scale of the CV Preview based on the size of the mobile device screen.
+__________________________________________
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
