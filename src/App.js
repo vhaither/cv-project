@@ -153,6 +153,11 @@ const App = () => {
     setPreviewElementStyle({ display: "block" });
   };
 
+  const editForm = () => {
+    setPreviewPDF(true);
+    setPreviewElementStyle({ display: "none" });
+  };
+
   return (
     <div className="App">
       {previewPDF ? (
@@ -299,6 +304,15 @@ const App = () => {
           skillsCV={skillList}
           photoCV={selectedImage}
         />
+
+        {!previewPDF ? (
+          <div className="previewMobileButtons">
+            <button onClick={editForm}>Edit</button>
+            <button onClick={generatePDF} className="greenButton">
+              Download PDF
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

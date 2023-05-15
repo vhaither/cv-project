@@ -109,3 +109,9 @@ div.addedSkill button {
     display: none;
   }
 }
+
+@media (min-width: 1226px) {
+  div.previewMode {
+    display: block !important;
+  }
+}
